@@ -10,8 +10,10 @@
 </head>
 <body>
     
-    <div id="root">
-
+    <div class="container">
+        <div id="root">
+    
+        </div>
     </div>
 
     <script src="{{ asset('js/front.js') }}"></script>

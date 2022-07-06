@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <h1>Front office</h1>
-    </div>
+  <h3>work in progress</h3>
 </template>
 
 <script>
-
 export default {
-    name: 'App',
+    name: "WorkInProgress",
 }
 </script>
 
 <style>
+
 </style>
