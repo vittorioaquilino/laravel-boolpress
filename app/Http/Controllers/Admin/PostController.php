@@ -41,21 +41,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate($this->getValidationRules());
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
-
-        $base_slug = Str::slug($post->title, '-');
-        $slug = $base_slug;
-        $count = 1;
-        $post_found = Post::where('slug', '=', $slug)->first();
-        while($post_found) {
-            $slug = $base_slug . '-' . $count; 
-            $post_found = Post::where('slug', '=', $slug)->first();
-            $count++;
-        }
-        $post->slug = $slug;
+        $post->slug = $this->generatePostSlugFromTitle($post->title);
         $post->save();
+        return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
     /**
@@ -80,6 +72,8 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -92,6 +86,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate($this->getValidationRules());
+        $data = $request->all();
+        $post = Post::findOrFail($id);
+        $post->fill($data);
+        $post->slug = $this->generatePostSlugFromTitle($post->title);
+        $post->save();
+        return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
     /**
@@ -103,5 +104,25 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function generatePostSlugFromTitle($title) {
+        $base_slug = Str::slug($title, '-');
+        $slug = $base_slug;
+        $count = 1;
+        $post_found = Post::where('slug', '=', $slug)->first();
+        while($post_found) {
+            $slug = $base_slug . '-' . $count; 
+            $post_found = Post::where('slug', '=', $slug)->first();
+            $count++;
+        }
+        return $slug;
+    }
+
+    private function getValidationRules() {
+        return [
+            'title' => 'required|max:255',
+            'content' => 'required|max:30000'
+        ];
     }
 }
