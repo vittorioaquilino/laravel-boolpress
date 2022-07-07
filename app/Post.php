@@ -12,7 +12,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'slug'
+        'slug',
+        'category_id'
     ];
 
     public static function generatePostSlugFromTitle($title) {
@@ -26,5 +27,9 @@ class Post extends Model
             $count++;
         }
         return $slug;
+    }
+
+    public function category() {
+        return $this->belongsTo('App\Category');
     }
 }
