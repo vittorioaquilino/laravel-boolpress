@@ -45,7 +45,7 @@ class PostController extends Controller
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
-        $post->slug = $this->generatePostSlugFromTitle($post->title);
+        $post->slug = Post::generatePostSlugFromTitle($post->title);
         $post->save();
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
@@ -89,9 +89,14 @@ class PostController extends Controller
         $request->validate($this->getValidationRules());
         $data = $request->all();
         $post = Post::findOrFail($id);
+        // metodo fill
         $post->fill($data);
-        $post->slug = $this->generatePostSlugFromTitle($post->title);
+        $post->slug = Post::generatePostSlugFromTitle($post->title);
         $post->save();
+
+        // metodo update
+        // $data = ['slug'] = Post::generatePostSlugFromTitle($data['title']);
+        $post->update($data);
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
@@ -106,20 +111,7 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect('admin.posts.index');
-    }
-
-    private function generatePostSlugFromTitle($title) {
-        $base_slug = Str::slug($title, '-');
-        $slug = $base_slug;
-        $count = 1;
-        $post_found = Post::where('slug', '=', $slug)->first();
-        while($post_found) {
-            $slug = $base_slug . '-' . $count; 
-            $post_found = Post::where('slug', '=', $slug)->first();
-            $count++;
-        }
-        return $slug;
+        return redirect('admin');
     }
 
     private function getValidationRules() {
