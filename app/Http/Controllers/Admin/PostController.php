@@ -115,7 +115,7 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect('admin');
+        return redirect()->route('admin.posts.index');
     }
 
     private function getValidationRules() {

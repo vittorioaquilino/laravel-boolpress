@@ -31,6 +31,7 @@
                 @endforeach
             </select>
         </div>
+        
         <div class="form-group">
             <label for="content">Contenuto</label>
             <textarea type="text" class="form-control" name="content" id="content"> {{ old('content') }} </textarea>
