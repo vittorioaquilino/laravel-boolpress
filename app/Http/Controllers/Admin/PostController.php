@@ -82,7 +82,8 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -102,6 +103,11 @@ class PostController extends Controller
         $post->fill($data);
         $post->slug = Post::generatePostSlugFromTitle($post->title);
         $post->save();
+        if(isset($data['tags'])) {
+            $post->sync($data['tags']);
+        } else {
+            $post->tags()->sync([]);
+        }
 
         // metodo update
         // $data = ['slug'] = Post::generatePostSlugFromTitle($data['title']);
