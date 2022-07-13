@@ -1,12 +1,12 @@
 <template>
   <section>
-      <h2>Questa è la pagina home</h2>
+      <h2>Questa è la pagina contatti</h2>
   </section>
 </template>
 
 <script>
 export default {
-    name: "Home"
+  name: "Contact"
 }
 </script>
 
