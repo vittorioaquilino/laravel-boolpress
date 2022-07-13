@@ -1,5 +1,6 @@
 <template>
     <div class="container text-center mt-3">
+        <router-view></router-view>
         <h1>Benvenuto nella pagina guest</h1>
         <div>
             <Posts />
