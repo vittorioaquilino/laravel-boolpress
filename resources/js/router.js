@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+import Home from "./pages/Home.vue";
+
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -12,4 +14,6 @@ const router = new VueRouter({
             component: Home
         }
     ]
-})
+});
+
+export default router;
