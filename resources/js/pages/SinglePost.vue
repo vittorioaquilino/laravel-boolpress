@@ -3,7 +3,13 @@
       <h2>{{ post.title }}</h2>
       <p>Categoria: {{categoryName}}</p>
       <div class="mb-4">
-
+          <router-link
+          :to="{ name: 'single-tag', params: { slug: tag.slug } }"
+          v-for="tag in post.tags"
+          :key="tag.id"
+          class="badge rounded-pill bg-warning text-dark mr-3"
+          >{{ tag.name }}</router-link
+          >
       </div>
       <p>{{ post.content }}</p>
   </section>
