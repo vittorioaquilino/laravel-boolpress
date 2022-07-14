@@ -3,9 +3,12 @@
       <h2>{{ post.title }}</h2>
       <p>Categoria: {{categoryName}}</p>
       <div class="mb-4">
-          
+
       </div>
       <p>{{ post.content }}</p>
+  </section>
+  <section v-else>
+      <h2>Loading...</h2>
   </section>
 </template>
 

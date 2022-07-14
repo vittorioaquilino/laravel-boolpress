@@ -2516,7 +2516,7 @@ var render = function render() {
 
   return _vm.post ? _c("section", [_c("h2", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v("Categoria: " + _vm._s(_vm.categoryName))]), _vm._v(" "), _c("div", {
     staticClass: "mb-4"
-  }), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))])]) : _vm._e();
+  }), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))])]) : _c("section", [_c("h2", [_vm._v("Loading...")])]);
 };
 
 var staticRenderFns = [];
@@ -53845,6 +53845,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _pages_SinglePost_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/*',
+    name: 'not-found',
     component: _pages_NotFound_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 });
