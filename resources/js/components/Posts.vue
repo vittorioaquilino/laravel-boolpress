@@ -4,14 +4,7 @@
     <div class="row row-cols-3">
       <!-- post singolo -->
       <div v-for="post in posts" :key="post.id" class="col">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">
-              {{ troncateText(post.content, 70) }}
-            </p>
-          </div>
-        </div>
+        <SinglePost :post="post"/>
       </div>
       <!-- post singolo -->
     </div>
@@ -62,8 +55,13 @@
 </template>
 
 <script>
+import SinglePost from "../components/SinglePost.vue";
+
 export default {
      name: "Posts",
+     components: {
+       SinglePost
+     },
   data() {
     return {
       posts: [],
@@ -89,12 +87,6 @@ export default {
           this.lastPage = resp.data.results.last_page;
           this.totalPosts = resp.data.results.total;
         });
-    },
-    troncateText(word, maxWord) {
-      if (word.length > maxWord) {
-        return word.substr(0, maxWord) + "...";
-      }
-      return word;
     },
   },
 };
