@@ -8,13 +8,16 @@
                 {{ troncateText(post.content, 70) }}
                 </p>
             </div>
+            <div class="card-body">
+                <router-link :to="{ name: 'single-post', params: { slug: post.slug } }" class="card-link">Leggi post</router-link>
+            </div>
         </div>
     </section>
 </template>
 
 <script>
 export default {
-    name: "SinglePost",
+    name: "PostCard",
     props: {
         post: Object
     },

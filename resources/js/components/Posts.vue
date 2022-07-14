@@ -4,7 +4,7 @@
     <div class="row row-cols-3">
       <!-- post singolo -->
       <div v-for="post in posts" :key="post.id" class="col">
-        <SinglePost :post="post"/>
+        <PostCard :post="post"/>
       </div>
       <!-- post singolo -->
     </div>
@@ -55,12 +55,12 @@
 </template>
 
 <script>
-import SinglePost from "../components/SinglePost.vue";
+import PostCard from "./PostCard.vue";
 
 export default {
      name: "Posts",
      components: {
-       SinglePost
+       PostCard
      },
   data() {
     return {

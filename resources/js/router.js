@@ -8,6 +8,7 @@ import About from "./pages/About.vue";
 import Contact from "./pages/Contact.vue";
 import Blog from "./pages/Blog.vue";
 import NotFound from "./pages/NotFound.vue";
+import SinglePost from "./pages/SinglePost.vue";
 
 const router = new VueRouter({
     mode: 'history',
@@ -33,9 +34,15 @@ const router = new VueRouter({
             component: Blog
         },
         {
+            path: '/blog/:slug',
+            name: 'single-post',
+            component: SinglePost
+        },
+        {
             path: '/*',
             component: NotFound
         }
+
     ]
 });
 
